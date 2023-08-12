@@ -4,19 +4,29 @@ import fs from "fs"
 
 async function main() {
   const personaToken = await ethers.deployContract('PersonaToken');
+  const NFTMarketplace = await ethers.deployContract('NFTMarketplace');
 
   await personaToken.waitForDeployment();
+  await NFTMarketplace.waitForDeployment();
 
   console.log('---------------------------------------------');
   console.log(`personaToken with deployed to ${personaToken.target}`);
   console.log('---------------------------------------------');
+  console.log('---------------------------------------------');
+  console.log(`NFTMarketplace with deployed to ${NFTMarketplace.target}`);
+  console.log('---------------------------------------------');
 
   console.log('------------------Updating Frontend---------------------');
-  const abi = getAbi('PersonaToken');
+  const tokenAbi = getAbi('PersonaToken');
+  const marketplaceAbi = getAbi('NFTMarketplace');
   fs.writeFileSync(
     '../personatokens/constants/smart-contracts.ts',
-    `export const personaTokenAddress = "${personaToken.target}";
-    export const personaTokenABI = ${JSON.stringify(abi)}`
+    `
+    export const personaTokenAddress = "${personaToken.target}}";
+    export const NFTMarketplaceAddress = "${NFTMarketplace.target}";
+    export const personaTokenABI = ${JSON.stringify(tokenAbi)};
+    export const NFTMarketplaceABI = ${JSON.stringify(marketplaceAbi)};
+    `
   );
   console.log('---------------------------Done-------------------------------');
 }
