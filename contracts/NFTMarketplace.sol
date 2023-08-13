@@ -1,12 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-// TODO:
-// 1. `listItems`: List NFTs on the marketplace
-// 2. `buyItems`: Buy the NFTs from the marketplace
-// 3. `cancelItems`: Cancel a listing
-// 4. `updateListing`: Update the price of the NFT already listed
-// 5. `withdrawProceeds`: Withdraw payment for my bought NFTs
+
 
 import "@openzeppelin/contracts/token/ERC721/IERC721.sol";
 import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
@@ -259,5 +254,5 @@ contract NFTMarketplace is ReentrancyGuard{
     function getTokenListedPrice(address nftAddress,uint256 tokenId) external view returns (uint256){
         return s_listings[nftAddress][tokenId].price;
     }
-    
+
 }

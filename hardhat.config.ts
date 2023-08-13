@@ -12,6 +12,16 @@ const config: HardhatUserConfig = {
       accounts: [process.env.PRIVATE_KEY as string],
       gasPrice: 1000000000 as number,
     },
+    'zora-goerli': {
+      url: 'https://testnet.rpc.zora.energy/',
+      accounts: [process.env.PRIVATE_KEY as string],
+      gasPrice: 1000000000 as number,
+    },
+    'optimism-goerli':{
+      url:'https://goerli.optimism.io',
+      accounts: [process.env.PRIVATE_KEY as string],
+      gasPrice: 1000000000 as number,
+    }
   },
 };
 
